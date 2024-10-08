@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_identity_identities",
+  "info": {
+    "displayName": "Identity",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "employee": {
+      "displayName": "Employee",
+      "type": "component",
+      "repeatable": false,
+      "component": "identity.employee"
+    }
+  }
+}

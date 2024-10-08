@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date_to": {
+      "type": "datetime"
+    },
+    "date_from": {
+      "type": "datetime"
+    }
+  }
+}

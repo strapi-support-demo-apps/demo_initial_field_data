@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_identity_employees",
+  "info": {
+    "displayName": "Employee",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
