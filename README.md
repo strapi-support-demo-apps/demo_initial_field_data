@@ -1,6 +1,6 @@
-# 🚀 Getting started with Strapi
+# 🚀 Populating Fields with Initial Data
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This example shows you how you can populate your fields with initial data before you create the data. We are utilizing injection zones in this example. Please review the injection zone documentation for your Strapi version. Note: the injection zone in this example does not have to be visibly rendered. I did so only for the sake of the demo.
 
 ### `develop`
 
@@ -22,40 +22,19 @@ npm run start
 yarn start
 ```
 
-### `build`
+### Where to look
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+There are several parts of this project that you can skip to, to see the injection zone codebase.
 
-```
-npm run build
-# or
-yarn build
-```
+- Look at the plugins directly. The plugin I created for this example is called field-populate.
+- Inside the plugin `field-populate` directory, there is a file `./admin/src/components/CustomButton` that shows you how I achieved this.
 
-## ⚙️ Deployment
+  - The rationale is me using the `useCMEditViewDataManager` a hook in Strapi that allows you to read (and in this case interact) with the context of the edit view page. You can read more about it here: https://docs-v4.strapi.io/dev-docs/api/plugins/admin-panel-api#injection-zones-api
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+  - In the `CustomButton.js` file (the file name doesn't mean anything), I use the `useEffect` hook to perform an operation once when the component loads.
 
-```
-yarn strapi deploy
-```
+  - This operation is setting a 0.5 second timer using `setTimeout` and then invoking the `onChange` function of the edit view context and passing in a rudimentary 'event' object that contains the minimum data needed to achieve this.
 
-## 📚 Learn more
+  - The 'event' in this case needs a `target` as the minimum field. The target `name` is the name of the property you want to change as defined in your schema file. The value is the value you want to set.
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- You can play around with the duration of the timer, and infact the implementation as a whole. The example serves to show what you can achieve with a bit of quick hacking in Strapi.
